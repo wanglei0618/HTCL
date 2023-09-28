@@ -1,0 +1,56 @@
+GLOVE_DIR: /opt/data/private/envs/glove
+
+MODEL:
+  ROI_RELATION_HEAD:
+    USE_GT_BOX: True   # True
+    USE_GT_OBJECT_LABEL: True   # False
+    Middle_FEATS_DIM: 4096
+    LAST_FEATS_DIM: 4096
+    PREDICTOR: PENET_HTCL
+    PREDICT_USE_BIAS: False
+    BATCH_SIZE_PER_IMAGE: 512
+  PRETRAINED_DETECTOR_CKPT: /opt/data/private/envs/pretrained_faster_rcnn/model_final.pth
+
+  num_center_head_cls: 10
+  num_beta: 0.9999
+  cut_rels: 200
+  PENET_wt: False
+  reweight_fineloss: True   # in loss
+  ft_with_dist0: True
+  semantic_embed_dim: 300
+  ct_loss: True
+  w_ct: 0.0001
+  refine_mask_rate: 0.1
+  refine_layers: 4
+  Classifier_Finetuning: True
+  Feats_resampling: True    # resampling method
+  Rels_each_class: 5000 # number of predicates per class 0==max(F_c)
+  max_bg_feats: 2000000
+
+TEST:
+  IMS_PER_BATCH: 1  #  1 per GPU
+  ALLOW_LOAD_FROM_CACHE: False
+  Save_eval_results: False
+  COCO_mAp: False
+  Eval_all_metrics: False
+  Val_mode: mRecall   # Recall mRecall
+
+DTYPE: "float32"
+
+SOLVER:
+  PRE_VAL: False  # False
+  Classifier_batch: 64
+  Classifier_max_iter: 100000
+  Classifier_checkpoint_period: 20000
+  BASE_LR_ft: 0.000001
+  cls_ft_STEPS: (60000,)
+
+  VAL_PERIOD: 20000
+  CHECKPOINT_PERIOD: 20000
+  BASE_LR: 0.001
+  GRAD_NORM_CLIP: 5.0
+  MAX_ITER: 60000
+  IMS_PER_BATCH: 8   # 8 per GPU
+  STEPS: (30000, 50000)
+  SCHEDULE:
+    TYPE: WarmupMultiStepLR
