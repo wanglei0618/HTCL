@@ -1,4 +1,4 @@
-# A-PFG
+# HTCL
 
 The repository is the implementation of paper "Head-Tail Cooperative Learning Network for Unbiased Scene Graph Generation".
 
