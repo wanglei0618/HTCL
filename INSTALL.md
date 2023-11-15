@@ -20,8 +20,8 @@ Most of the requirements of this projects are exactly the same as [maskrcnn-benc
 # for that, check that `which conda`, `which pip` and `which python` points to the
 # right path. From a clean conda env, this is what you need to do
 
-conda create --name APFG
-conda activate APFG
+conda create --name HTCL
+conda activate HTCL
 
 # this installs the right pip and dependencies for the fresh python
 conda install ipython
@@ -57,8 +57,8 @@ python setup.py install --cuda_ext --cpp_ext
 
 # install PyTorch Detection
 cd $INSTALL_DIR
-git clone https://github.com/wanglei0618/A-PFG.git
-cd A-PFG
+git clone https://github.com/wanglei0618/HTCL.git
+cd HTCL
 
 # the following will install the lib with
 # symbolic links, so that you can modify
